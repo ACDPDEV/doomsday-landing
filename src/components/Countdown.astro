@@ -1,0 +1,146 @@
+---
+const { className = "mt-64 text-center px-4" } = Astro.props;
+
+const pathname = Astro.url.pathname;
+const lang = pathname.startsWith("/es") ? "es" : "en";
+
+const targetDate = new Date("2026-12-18T00:00:00");
+
+const labels = {
+    en: {
+        months: "MONTHS",
+        days: "DAYS",
+        hours: "HOURS",
+        minutes: "MINUTES",
+        seconds: "SECONDS",
+        title: "DOOMSDAY IS COMING",
+    },
+    es: {
+        months: "MESES",
+        days: "DÍAS",
+        hours: "HORAS",
+        minutes: "MINUTOS",
+        seconds: "SEGUNDOS",
+        title: "DOOMSDAY ESTÁ LLEGANDO",
+    },
+};
+
+const t = labels[lang];
+---
+
+<div class={`relative z-10 ${className}`}>
+    <h1 class="text-2xl font-black text-text tracking-wider uppercase">
+        {t.title}
+    </h1>
+
+    <div
+        class="flex flex-wrap justify-center gap-3 md:gap-2 [&>div>span]:text-text [&>div>span]:text-5xl [&>div>span]:font-bold [&>div]:flex [&>div]:flex-col [&>div>p]: [&>div>p]:text-[10px] [&>div>p]:text-text [&>div>p]:mt-2 [&>div>p]:font-semibold [&>span]:text-5xl [&>span]:text-text"
+    >
+        <div>
+            <span id="countdown-months">--</span>
+            <p>{t.months}</p>
+        </div>
+
+        <span>:</span>
+
+        <div>
+            <span id="countdown-days">--</span>
+            <p>{t.days}</p>
+        </div>
+
+        <span>:</span>
+
+        <div>
+            <span id="countdown-hours">--</span>
+            <p>{t.hours}</p>
+        </div>
+
+        <span>:</span>
+
+        <div>
+            <span id="countdown-minutes">--</span>
+            <p>{t.minutes}</p>
+        </div>
+
+        <span>:</span>
+
+        <div>
+            <span id="countdown-seconds">--</span>
+            <p>{t.seconds}</p>
+        </div>
+    </div>
+</div>
+
+<script define:vars={{ targetDate: targetDate.getTime() }}>
+    // Calcula meses y días entre dos fechas
+    function getMonthDayDifference(startDate, endDate) {
+        let months = 0;
+        let cursor = new Date(startDate);
+
+        // Avanza meses mientras no supere endDate
+        while (true) {
+            const next = new Date(cursor);
+            next.setMonth(cursor.getMonth() + 1);
+            if (next <= endDate) {
+                cursor = next;
+                months++;
+            } else {
+                break;
+            }
+        }
+
+        // Días restantes desde el cursor hasta endDate
+        const diffMs = endDate.getTime() - cursor.getTime();
+        let days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        if (days < 0) days = 0;
+
+        return { months, days };
+    }
+
+    function updateCountdown() {
+        const now = new Date();
+        const targetDateObj = new Date(targetDate);
+
+        // Si ya pasó la fecha objetivo
+        if (targetDateObj.getTime() <= now.getTime()) {
+            document.getElementById("countdown-months").textContent = "00";
+            document.getElementById("countdown-days").textContent = "00";
+            document.getElementById("countdown-hours").textContent = "00";
+            document.getElementById("countdown-minutes").textContent = "00";
+            document.getElementById("countdown-seconds").textContent = "00";
+            return;
+        }
+
+        const { months, days } = getMonthDayDifference(now, targetDateObj);
+
+        // Date aproximada tras sumar months y days
+        let dateAfter = new Date(now);
+        dateAfter.setMonth(now.getMonth() + months);
+        dateAfter.setDate(now.getDate() + days);
+
+        const remaining = targetDateObj.getTime() - dateAfter.getTime();
+
+        const hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((remaining / (1000 * 60)) % 60);
+        const seconds = Math.floor((remaining / 1000) % 60);
+
+        document.getElementById("countdown-months").textContent = String(
+            months,
+        ).padStart(2, "0");
+        document.getElementById("countdown-days").textContent = String(
+            days,
+        ).padStart(2, "0");
+        document.getElementById("countdown-hours").textContent = String(
+            hours,
+        ).padStart(2, "0");
+        document.getElementById("countdown-minutes").textContent = String(
+            minutes,
+        ).padStart(2, "0");
+        document.getElementById("countdown-seconds").textContent = String(
+            seconds,
+        ).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+</script>
