@@ -26,7 +26,7 @@ const t = labels[lang];
 ---
 
 <section
-    class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+    class="relative w-full h-screen flex"
     data-trailer-section
     data-video-id={videoId}
     data-trailer-id={id}
@@ -37,19 +37,22 @@ const t = labels[lang];
             alt={`Trailer ${id} Background`}
             class="w-full h-full object-cover"
         />
-        <div class="absolute inset-0 bg-black/60"></div>
+        <div class="absolute bottom-0 right-0 left-0 h-12 bg-[#080D0B]"></div>
     </div>
 
-    <div class="relative z-10 w-full max-w-6xl px-6 py-12">
+    <div
+        class="absolute bottom-12 flex flex-row bg-linear-to-t/hsl from-[#080D08] to-transparent h-[calc(50%)] z-10 w-full px-6 py-12"
+    >
         <div
             class="flex flex-col md:flex-row items-center justify-between gap-8"
         >
             <div class="flex-1">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">
-                    Trailer {id}
+                <h2 class="text-text text-6xl md:text-5xl font-bold mb-4">
+                    TRAILER {id}
                 </h2>
 
-                <div class="flex items-center gap-6 mb-6">
+                <h2 class="flex items-center gap-6 mb-6">
+                    <span></span>
                     <div class="flex items-center gap-2">
                         <span class="text-2xl font-bold" data-views>---</span>
                         <span class="text-gray-300">{t.views}</span>
@@ -59,7 +62,7 @@ const t = labels[lang];
                         <span class="text-2xl font-bold" data-likes>---</span>
                         <span class="text-gray-300">{t.likes}</span>
                     </div>
-                </div>
+                </h2>
 
                 <div
                     class="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg text-xl font-bold transition-colors"
@@ -78,12 +81,16 @@ const t = labels[lang];
             {
                 characters.map((char) => (
                     <div class="flex flex-col items-center">
-                        {char.image && (
+                        {char.image ? (
                             <img
                                 src={`/assets/characters/${char.image}`}
                                 alt={char.name}
                                 class="w-20 h-20 md:w-24 md:h-24 object-contain rounded-full bg-black/40"
                             />
+                        ) : (
+                            <div class="w-20 h-20 md:w-24 md:h-24 bg-black/40 rounded-full flex justify-center items-center">
+                                ?
+                            </div>
                         )}
 
                         <span class="mt-2 text-sm text-center text-gray-300">
