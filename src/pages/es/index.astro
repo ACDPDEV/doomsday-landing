@@ -1,65 +1,72 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Hero from '../../components/Hero.astro';
-import Trailer from '../../components/Trailer.astro';
-import Footer from '../../components/Footer.astro';
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import Trailer from "../../components/Trailer.astro";
+import Footer from "../../components/Footer.astro";
+
+const characters = [
+    { name: "Steve Rogers (Chris Evans)", image: "steve_rogers.png" },
+    { name: "Hijo de Steve Rogers (???)", image: null },
+    { name: "Thor (Chris Hemsworth)", image: "thor.png" },
+    { name: "Love (Rose Hemsworth)", image: "love.png" },
+    { name: "Professor X (Patrick Stewart)", image: "profesor_x.png" },
+    { name: "Magneto (Ian McKellen)", image: "magneto.png" },
+    { name: "Cíclope (James Marsden)", image: "cyclops.png" },
+    { name: "Shuri (Letitia Wright)", image: "shuri.png" },
+    { name: "Namor (Tenoch Huerta)", image: "namor.png" },
+    { name: "Namora (Mabel Cadena)", image: "namora.png" },
+    { name: "M'Baku (Winston Duke)", image: "mbaku.png" },
+    { name: "La Mole (Ebon Moss-Bachrach)", image: "thing.png" },
+];
 
 const trailers = [
-  {
-    id: 1,
-    videoId: 'K0Fr7n19SPU',
-    background: 'trailer1_bg.jpg',
-    characters: [
-      { name: 'Steve Rogers', image: 'steve_rogers.png' },
-      { name: 'Thor', image: 'thor.png' },
-      { name: 'Shuri', image: 'shuri.png' }
-    ]
-  },
-  {
-    id: 2,
-    videoId: 'CijeC0RTpbA',
-    background: 'trailer2_bg.jpg',
-    characters: [
-      { name: 'Professor X', image: 'profesor_x.png' },
-      { name: 'Magneto', image: 'magneto.png' },
-      { name: 'Cyclops', image: 'cyclops.png' }
-    ]
-  },
-  {
-    id: 3,
-    videoId: 'NzsDtHCdhGc',
-    background: 'trailer3_bg.jpg',
-    characters: [
-      { name: 'Namor', image: 'namor.png' },
-      { name: 'Namora', image: 'namora.png' }
-    ]
-  },
-  {
-    id: 4,
-    videoId: 'SBGZMIOmjjs',
-    background: 'trailer4_bg.jpg',
-    characters: [
-      { name: 'Namor', image: 'namor.png' },
-      { name: 'Namora', image: 'namora.png' },
-      { name: "M'Baku", image: 'mbaku.png' },
-      { name: 'Thing', image: 'thing.png' }
-    ]
-  }
+    {
+        id: 1,
+        videoId: "UiMg566PREA",
+        background: "trailer1_bg.jpg",
+        characters: [characters[0], characters[1]],
+    },
+    {
+        id: 2,
+        videoId: "1clWprLC5Ak",
+        background: "trailer2_bg.jpg",
+        characters: [characters[2], characters[3]],
+    },
+    {
+        id: 3,
+        videoId: "kH1XlwHQv9o",
+        background: "trailer3_bg.jpg",
+        characters: [characters[4], characters[5], characters[6]],
+    },
+    {
+        id: 4,
+        videoId: "399Ez7WHK5s",
+        background: "trailer4_bg.jpg",
+        characters: [
+            characters[7],
+            characters[8],
+            characters[9],
+            characters[10],
+            characters[11],
+        ],
+    },
 ];
 ---
 
 <Layout lang="es">
-  <Hero lang="es" />
-  
-  {trailers.map((trailer) => (
-    <Trailer 
-      id={trailer.id}
-      videoId={trailer.videoId}
-      background={trailer.background}
-      characters={trailer.characters}
-      lang="es"
-    />
-  ))}
-  
-  <Footer lang="es" />
+    <Hero lang="es" />
+
+    {
+        trailers.map((trailer) => (
+            <Trailer
+                id={trailer.id}
+                videoId={trailer.videoId}
+                background={trailer.background}
+                characters={trailer.characters}
+                lang="es"
+            />
+        ))
+    }
+
+    <Footer lang="es" />
 </Layout>
