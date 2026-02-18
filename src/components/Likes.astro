@@ -1,0 +1,30 @@
+---
+import { YOUTUBE_API_KEY } from "astro:env/server";
+
+interface Props {
+    videoId: string;
+    format?: "explicit" | "compact";
+}
+const { videoId, format = "compact" } = Astro.props;
+
+const URL = `https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoId}&key=${YOUTUBE_API_KEY}`;
+
+const res = await fetch(URL);
+const data = await res.json();
+
+const likes = Number(data.items[0].statistics.likeCount);
+
+function compactLikes() {
+    if (likes < 1000) {
+        return likes.toString();
+    }
+    if (likes < 1000000) {
+        return `${(likes / 1000).toFixed(0)}K`;
+    }
+    return `${(likes / 1000000).toFixed(0)}M`;
+}
+
+export const prerender = false;
+---
+
+<span>{format === "compact" ? compactLikes() : likes}</span>
