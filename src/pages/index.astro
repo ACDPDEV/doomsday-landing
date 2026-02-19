@@ -24,24 +24,28 @@ const trailers = [
         id: 1,
         videoId: "UiMg566PREA",
         background: "trailer1_bg.jpg",
+        phrase: "Steve Rogers Will Return In Avengers: Doomsday",
         characters: [characters[0], characters[1]],
     },
     {
         id: 2,
         videoId: "1clWprLC5Ak",
         background: "trailer2_bg.jpg",
+        phrase: "Thor Will Return In Avengers: Doomsday",
         characters: [characters[2], characters[3]],
     },
     {
         id: 3,
         videoId: "kH1XlwHQv9o",
         background: "trailer3_bg.jpg",
+        phrase: "The X-Men Will Return In Avengers: Doomsday",
         characters: [characters[4], characters[5], characters[6]],
     },
     {
         id: 4,
         videoId: "399Ez7WHK5s",
         background: "trailer4_bg.jpg",
+        phrase: "The Wakandian And Fantastic Four Will Return In Avengers: Doomsday",
         characters: [
             characters[7],
             characters[8],
@@ -62,6 +66,7 @@ const trailers = [
                 id={trailer.id}
                 videoId={trailer.videoId}
                 background={trailer.background}
+                phrase={trailer.phrase}
                 characters={trailer.characters}
                 lang="en"
             />
