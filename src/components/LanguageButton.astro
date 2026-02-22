@@ -1,0 +1,66 @@
+---
+const pathName = Astro.url.pathname;
+
+const isEsPath = pathName.startsWith("/es");
+
+const languageImgPath = isEsPath
+    ? "/assets/language_flags/spanish.png"
+    : "/assets/language_flags/english.png";
+const languageImgAlt = isEsPath ? "Español" : "English";
+const languageLabel = isEsPath ? "ES" : "EN";
+---
+
+<>
+    {/* Language Dropdown Trigger */}
+    <button id="language-dropdown-trigger" class="px-4 gap-2">
+        <img
+            src={languageImgPath}
+            alt={languageImgAlt}
+            class="w-6 h-6 object-cover"
+        />
+        <span class="text-sm text-text font-semibold">{languageLabel}</span>
+    </button>
+
+    {/* Language Dropdown Content */}
+    <div
+        id="language-dropdown-content"
+        class="hidden flex-col absolute top-full mt-1 right-0 bg-[#111D0E] border border-[#2F4027]/75 backdrop-blur-xl p-2 rounded-xl shadow-lg z-10 [&>a]:flex [&>a]:flex-row [&>a]:p-2 [&>a]:gap-2 [&>a>img]:w-6 [&>a>img]:h-6 [&>a>img]:object-cover [&>a>span]:text-sm [&>a>span]:text-text [&>a>span]:font-semibold [&>a]:hover:bg-[#112F0E] [&>a]:rounded-xl"
+    >
+        <a
+            href={isEsPath ? "/" : null}
+            class={!isEsPath ? "bg-[#112F0E] opacity-50" : ""}
+        >
+            <img src="/assets/language_flags/english.png" alt="English" />
+            <span>English</span>
+        </a>
+        <a
+            href={!isEsPath ? "es" : null}
+            class={isEsPath ? "bg-[#112F0E] opacity-50" : ""}
+        >
+            <img src="/assets/language_flags/spanish.png" alt="Español" />
+            <span>Español</span>
+        </a>
+    </div>
+</>
+
+<script>
+    const $ = document.querySelector.bind(document);
+
+    /* Language Dropdown */
+    const trigger = $("#language-dropdown-trigger");
+    const content = $("#language-dropdown-content");
+
+    trigger?.addEventListener("click", (e) => {
+        e.stopPropagation();
+
+        const isHidden = content?.classList.contains("hidden");
+
+        content?.classList.toggle("hidden", !isHidden);
+        content?.classList.toggle("flex", isHidden);
+    });
+
+    document.addEventListener("click", () => {
+        content?.classList.add("hidden");
+        content?.classList.remove("flex");
+    });
+</script>

@@ -1,24 +1,24 @@
 ---
-import '../styles/global.css';
-import Header from '../components/Header.astro';
+import "../styles/global.css";
+import Header from "../components/Header.astro";
 
 interface Props {
-  lang?: 'en' | 'es';
+    lang?: "en" | "es";
 }
 
-const { lang = 'en' } = Astro.props;
+const { lang = "en" } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang={lang}>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Avengers Doomsday</title>
-    <link rel="icon" type="image/png" href="/assets/logo.png" />
-  </head>
-  <body class="bg-black text-white">
-    <Header lang={lang} />
-    <slot />
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Avengers Doomsday</title>
+        <link rel="icon" type="image/png" href="/assets/icon.ico" />
+    </head>
+    <body class="bg-black text-white">
+        <Header lang={lang} />
+        <slot />
+    </body>
 </html>

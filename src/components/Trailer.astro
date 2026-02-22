@@ -33,10 +33,12 @@ const labels = {
 };
 
 const t = labels[lang];
+const pathName = Astro.url.pathname;
 ---
 
 <section
     class="relative w-full h-screen flex"
+    id={`trailer-${id}`}
     data-trailer-section
     data-video-id={videoId}
     data-trailer-id={id}
@@ -51,13 +53,16 @@ const t = labels[lang];
     </div>
 
     <div
-        class="absolute bottom-12 flex flex-row justify-between bg-linear-to-t/hsl from-[#080D08] to-transparent h-[calc(50%)] z-10 w-full p-16"
+        class="absolute bottom-12 flex flex-row justify-between bg-linear-to-t/hsl from-[#080D08] to-transparent h-[calc(60%)] z-10 w-full p-16"
     >
         <div class="flex flex-col justify-between">
             <div class="flex flex-col text-text font-bold gap-3">
-                <h1 class="text-7xl">
+                <a
+                    href={`${pathName}#trailer-${id}`}
+                    class="text-7xl hover:underline"
+                >
                     TRAILER {id}
-                </h1>
+                </a>
 
                 <h3 class="text-lg flex flex-row gap-4 font-semibold">
                     <span>Marvel Studios</span>
@@ -70,6 +75,8 @@ const t = labels[lang];
 
             <a
                 href={`https://www.youtube.com/watch?v=${videoId}`}
+                rel="noopener noreferrer"
+                target="_blank"
                 class="flex flex-row gap-4 p-4 rounded-xl w-fit bg-[#2A5FD2] text-text font-semibold text-lg justify-center items-center"
             >
                 <img
@@ -84,7 +91,7 @@ const t = labels[lang];
         <div class="flex flex-col gap-4 items-end">
             <div class="bg-[#080D0B] p-4 rounded-xl">{phrase}</div>
             <div
-                class="flex flex-col bg-[#080D0B] p-4 rounded-xl gap-4 text-text font-semibold w-fit h-fit max-h-full"
+                class="flex flex-col bg-[#080D0B] p-4 rounded-xl gap-4 text-text font-semibold w-fit h-fit max-h-full overflow-y-auto"
             >
                 <h3>Personajes involucrados:</h3>
                 {
