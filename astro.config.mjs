@@ -2,7 +2,7 @@
 import { defineConfig, envField } from "astro/config";
 import tailwind from "@tailwindcss/vite";
 
-import node from "@astrojs/node";
+import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
   output: "static",
@@ -17,7 +17,5 @@ export default defineConfig({
     },
   },
 
-  adapter: node({
-    mode: "standalone",
-  }),
+  adapter: cloudflare(),
 });
