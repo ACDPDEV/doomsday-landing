@@ -4,8 +4,8 @@ const pathName = Astro.url.pathname;
 const isEsPath = pathName.startsWith("/es");
 
 const languageImgPath = isEsPath
-    ? "/assets/language_flags/spanish.png"
-    : "/assets/language_flags/english.png";
+    ? "/public/language_flags/spanish.png"
+    : "/public/language_flags/english.png";
 const languageImgAlt = isEsPath ? "Español" : "English";
 const languageLabel = isEsPath ? "ES" : "EN";
 ---
@@ -30,14 +30,14 @@ const languageLabel = isEsPath ? "ES" : "EN";
             href={isEsPath ? "/" : null}
             class={!isEsPath ? "bg-[#112F0E] opacity-50" : ""}
         >
-            <img src="/assets/language_flags/english.png" alt="English" />
+            <img src="/public/language_flags/english.png" alt="English" />
             <span>English</span>
         </a>
         <a
             href={!isEsPath ? "es" : null}
             class={isEsPath ? "bg-[#112F0E] opacity-50" : ""}
         >
-            <img src="/assets/language_flags/spanish.png" alt="Español" />
+            <img src="/public/language_flags/spanish.png" alt="Español" />
             <span>Español</span>
         </a>
     </div>

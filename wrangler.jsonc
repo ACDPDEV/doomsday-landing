@@ -1,16 +1,13 @@
 {
-	"main": "dist/_worker.js/index.js",
-	"name": "doomsday_landing",
+  "main": "dist/_worker.js/index.js",
+  "name": "doomsday_landing",
   "compatibility_date": "2026-02-22",
-  "compatibility_flags": [
-    "nodejs_compat",
-    "global_fetch_strictly_public"
-  ],
-	"assets": {
-		"binding": "ASSETS",
-		"directory": "./dist"
-	},
-	"observability": {
-    "enabled": true
-  }
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "public": {
+    "binding": "public",
+    "directory": "./dist",
+  },
+  "observability": {
+    "enabled": true,
+  },
 }
