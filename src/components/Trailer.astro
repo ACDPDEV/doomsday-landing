@@ -45,7 +45,7 @@ const pathName = Astro.url.pathname;
 >
     <div class="absolute inset-0 z-0">
         <img
-            src={`/public/backgrounds/${background}`}
+            src={`/backgrounds/${background}`}
             alt={`Trailer ${id} Background`}
             class="w-full h-full object-cover"
         />
@@ -80,7 +80,7 @@ const pathName = Astro.url.pathname;
                 class="flex flex-row gap-4 p-4 rounded-xl w-fit bg-[#2A5FD2] text-text font-semibold text-lg justify-center items-center"
             >
                 <img
-                    src="/public/icons/play.svg"
+                    src="/icons/play.svg"
                     alt="Play"
                     class="w-5 h-5 text-text"
                 />
@@ -99,7 +99,7 @@ const pathName = Astro.url.pathname;
                         <div class="flex flex-row items-center text-text gap-3 font-light">
                             {char.image ? (
                                 <img
-                                    src={`/public/characters/${char.image}`}
+                                    src={`/characters/${char.image}`}
                                     alt={char.name}
                                     class="w-8 h-auto"
                                 />

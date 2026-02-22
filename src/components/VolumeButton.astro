@@ -4,11 +4,10 @@
     aria-pressed="false"
     title="Activar sonido"
 >
-    <img src="/public/icons/volume_off.svg" alt="Volume" class="w-5 h-5" />
+    <img src="/icons/volume_off.svg" alt="Volume" class="w-5 h-5" />
 </button>
 
-<audio id="bg-audio" src="/public/audio/clock_sound.mp3" loop muted autoplay
-></audio>
+<audio id="bg-audio" src="/audio/clock_sound.mp3" loop muted autoplay></audio>
 
 <script>
     const $ = (s) => document.querySelector(s);
@@ -19,9 +18,7 @@
     const updateButton = () => {
         const img = volumeToggle.querySelector("img");
         if (img)
-            img.src = isMuted
-                ? "/public/icons/volume_off.svg"
-                : "/public/icons/volume.svg";
+            img.src = isMuted ? "/icons/volume_off.svg" : "/icons/volume.svg";
         volumeToggle.setAttribute("aria-pressed", String(!isMuted));
         volumeToggle.title = isMuted ? "Activar sonido" : "Silenciar";
     };
